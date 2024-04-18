@@ -9,21 +9,41 @@ public class SneakerService {
 
 
     public static Sneaker create(String name, String brand, String sport, float size, int qty, float price) {
-    Sneaker createdSneaker = new Sneaker(nextId++, name, brand, sport, size, qty, price);
-    inventory.add(createdSneaker);
-    return createdSneaker;
+        Sneaker createdSneaker = new Sneaker(nextId++, name, brand, sport, size, qty, price);
+        inventory.add(createdSneaker);
+        return createdSneaker;
+    }
 
 
-        public Sneaker findSneaker(int id) {
-
+    public Sneaker findSneaker(int id) {
+        for  (Sneaker sneaker : inventory) {
+            if(sneaker.getId() == id) {
+                return sneaker;
+            }
         }
-        public Sneaker[] findAll() {
-
-        }
-        public boolean delete(int id) {
-
-        }
+        return null;
+    }
 
 
 
-    }}
+    public Sneaker[] findAll() {
+
+        Sneaker[] array = new Sneaker[inventory.size()];
+        return inventory.toArray(array);
+
+
+    }
+    public boolean delete(int id) {
+        for  (Sneaker sneaker : inventory) {
+            if(sneaker.getId() == id) {
+                inventory.remove(id);
+
+            }
+        }return true;
+
+    }
+
+
+
+
+}
